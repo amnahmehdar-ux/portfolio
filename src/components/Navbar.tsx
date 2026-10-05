@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { navLinks, profile } from '@/data/profile';
+import { navLinks } from '@/data/profile';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,28 +34,30 @@ export function Navbar() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-ink-50/85 backdrop-blur-md border-b border-ink-200/70 shadow-soft'
+          ? 'bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#EADBCE] shadow-sm'
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-content mx-auto px-5 sm:px-8 flex items-center justify-between h-16 sm:h-20 transition-all">
+      <nav className="max-w-content mx-auto px-5 sm:px-8 flex items-center justify-between h-20 sm:h-24 transition-all">
+        {/* اليسار: النجمة واللوقو الثاني */}
         <button
           onClick={() => go('home')}
-          className="flex items-center gap-2.5 group"
+          className="flex items-center gap-1.5 group py-1"
           aria-label="Home"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-ink-900 text-accent-400 font-display font-bold text-lg group-hover:scale-105 transition-transform">
-            A
-          </span>
-          <span
-            className={`font-display font-semibold tracking-tight transition-all ${
-              scrolled ? 'text-ink-900 text-base' : 'text-ink-900 text-lg'
-            }`}
-          >
-            {profile.shortName}
-          </span>
+          <img
+            src="/logo.png"
+            alt="Star"
+            className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+          <img
+            src="/logo1.png"
+            alt="Amnah"
+            className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:opacity-95"
+          />
         </button>
 
+        {/* المنتصف: روابط القائمة في المنتصف تماماً */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <button
@@ -63,50 +65,52 @@ export function Navbar() {
               onClick={() => go(link.id)}
               className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 active === link.id
-                  ? 'text-accent-700'
-                  : 'text-ink-600 hover:text-ink-900'
+                  ? 'text-[#C59B27]'
+                  : 'text-[#5A434D] hover:text-[#3D1420]'
               }`}
             >
               {link.label}
               {active === link.id && (
-                <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-accent-500" />
+                <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#C59B27]" />
               )}
             </button>
           ))}
         </div>
 
+        {/* اليمين: زر التواصل */}
         <button
           onClick={() => go('contact')}
-          className="hidden md:inline-flex items-center rounded-lg bg-ink-900 px-4 py-2 text-sm font-medium text-white hover:bg-ink-800 transition-colors"
+          className="hidden md:inline-flex items-center rounded-lg bg-[#3D1420] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#2B0B15] transition-colors shadow-sm"
         >
           Let&apos;s Connect
         </button>
 
+        {/* زر الموبايل */}
         <button
-          className="md:hidden p-2 -mr-2 text-ink-800"
+          className="md:hidden p-2 -mr-2 text-[#3D1420]"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 bg-ink-50/95 backdrop-blur-md border-b border-ink-200 ${
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#EADBCE] ${
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-5 py-3 flex flex-col">
+        <div className="px-5 py-3 flex flex-col gap-1">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => go(link.id)}
-              className={`text-left py-3 px-2 rounded-lg text-base font-medium transition-colors ${
+              className={`text-left py-3 px-3 rounded-lg text-base font-medium transition-colors ${
                 active === link.id
-                  ? 'text-accent-700 bg-accent-50'
-                  : 'text-ink-700 hover:bg-ink-100'
+                  ? 'text-[#C59B27] bg-[#C59B27]/10'
+                  : 'text-[#5A434D] hover:bg-[#EADBCE]/40'
               }`}
             >
               {link.label}

@@ -4,67 +4,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Central accent — change this single ramp to re-theme the whole site.
-        accent: {
-          50: '#eef6ff',
-          100: '#d9ecff',
-          200: '#bcdcff',
-          300: '#8ec5ff',
-          400: '#59a3ff',
-          500: '#3b82f6', // primary accent
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
-        },
+        // لوحة ألوان الخلفيات والنصوص الداكنة (مبنية على درجات البيج الدافئ والعنابي العميق)
         ink: {
-          50: '#f7f8fa',
-          100: '#eef0f4',
-          200: '#dde2e9',
-          300: '#c2cbd6',
-          400: '#9aa6b5',
-          500: '#6b7787',
-          600: '#4a5462',
-          700: '#353d49',
-          800: '#20262f',
-          900: '#13171d',
-          950: '#0a0d11',
+          50: '#FAF8F5',   // الخلفية الأساسية (كريمي / أوف وايت دافئ وفاخر)
+          100: '#F4EFEB',  // خلفية الكروت والأقسام الفاتحة
+          200: '#E8DED5',  // الحدود والفواصل الناعمة
+          300: '#D5C4B5',
+          400: '#9E887B',
+          500: '#6E5560',  // النصوص الفرعية
+          600: '#523A44',  // نصوص وسطية
+          700: '#3D2530',  // نصوص بارزة
+          800: '#2C131E',  // عنابي داكن جداً
+          900: '#230E17',  // اللون الأساسي للنصوص والعناوين الكبيرة والأزرار السوداء سابقاً
+          950: '#14060C',
         },
-      },
-      fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-      },
-      maxWidth: {
-        content: '1120px',
-      },
-      boxShadow: {
-        soft: '0 1px 2px rgba(16,23,29,0.04), 0 8px 24px -12px rgba(16,23,29,0.12)',
-        lift: '0 2px 4px rgba(16,23,29,0.06), 0 24px 48px -16px rgba(16,23,29,0.22)',
-      },
-      keyframes: {
-        'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        // لوحة اللون المميز (الذهبي الفخم المتناسق مع النجمة)
+        accent: {
+          50: '#FDF9EE',
+          100: '#FAF1D6',
+          200: '#F4E0A5',
+          300: '#EACB70',
+          400: '#D4AF37',  // الذهبي المتوهج
+          500: '#C59B27',  // الذهبي الأساسي للروابط والخطوط النشطة
+          600: '#A7801D',
+          700: '#846217',  // الذهبي الداكن للنصوص القابلة للقراءة
+          800: '#644816',
+          900: '#483413',
         },
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        float: {
-          '0%,100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        shimmer: {
-          '100%': { transform: 'translateX(100%)' },
-        },
-      },
-      animation: {
-        'fade-up': 'fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both',
-        'fade-in': 'fade-in 0.7s ease both',
-        float: 'float 6s ease-in-out infinite',
       },
     },
   },
