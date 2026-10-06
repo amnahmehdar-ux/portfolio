@@ -1,8 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '@/data/profile';
+import { useLanguage } from '../context/LanguageContext';
+
+// ترجمة مسميات الروابط حسب الـ id
+const linkLabels: Record<string, { en: string; ar: string }> = {
+  about: { en: 'About', ar: 'نبذة عني' },
+  experience: { en: 'Experience', ar: 'الخبرات' },
+  projects: { en: 'Projects', ar: 'المشاريع' },
+  skills: { en: 'Skills', ar: 'المهارات' },
+  education: { en: 'Education', ar: 'التعليم' },
+  contact: { en: 'Contact', ar: 'تواصل معي' },
+};
 
 export function Navbar() {
+  const { lang, toggleLanguage, isAr } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
@@ -50,11 +62,11 @@ export function Navbar() {
             alt="Star"
             className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <img
+         <img
             src="/logo1.png"
             alt="Amnah"
-            className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:opacity-95"
-          />
+            className="h-16 sm:h-40 w-auto object-contain transition-transform duration-300 group-hover:opacity-95"
+        />
         </button>
 
         {/* المنتصف: روابط القائمة في المنتصف تماماً */}
@@ -69,7 +81,7 @@ export function Navbar() {
                   : 'text-[#5A434D] hover:text-[#3D1420]'
               }`}
             >
-              {link.label}
+              {linkLabels[link.id] ? linkLabels[link.id][lang] : link.label}
               {active === link.id && (
                 <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#C59B27]" />
               )}
@@ -77,23 +89,41 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* اليمين: زر التواصل */}
-        <button
-          onClick={() => go('contact')}
-          className="hidden md:inline-flex items-center rounded-lg bg-[#3D1420] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#2B0B15] transition-colors shadow-sm"
-        >
-          Let&apos;s Connect
-        </button>
+        {/* اليمين: زر تبديل اللغة + زر التواصل */}
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={toggleLanguage}
+            className="px-3.5 py-2 text-xs font-semibold rounded-lg border border-[#C59B27]/40 text-[#5A434D] hover:bg-[#EADBCE]/40 transition-colors shadow-2xs"
+            aria-label="Toggle language"
+          >
+            {isAr ? 'EN' : 'عربي'}
+          </button>
+
+          <button
+            onClick={() => go('contact')}
+            className="inline-flex items-center rounded-lg bg-[#3D1420] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#2B0B15] transition-colors shadow-sm"
+          >
+            {isAr ? 'تواصل معي' : "Let's Connect"}
+          </button>
+        </div>
 
         {/* زر الموبايل */}
-        <button
-          className="md:hidden p-2 -mr-2 text-[#3D1420]"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleLanguage}
+            className="px-2.5 py-1 text-xs font-semibold rounded-md border border-[#C59B27]/40 text-[#5A434D] hover:bg-[#EADBCE]/40 transition-colors"
+          >
+            {isAr ? 'EN' : 'عربي'}
+          </button>
+          <button
+            className="p-2 -mr-2 text-[#3D1420]"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -107,15 +137,21 @@ export function Navbar() {
             <button
               key={link.id}
               onClick={() => go(link.id)}
-              className={`text-left py-3 px-3 rounded-lg text-base font-medium transition-colors ${
+              className={`text-start py-3 px-3 rounded-lg text-base font-medium transition-colors ${
                 active === link.id
                   ? 'text-[#C59B27] bg-[#C59B27]/10'
                   : 'text-[#5A434D] hover:bg-[#EADBCE]/40'
               }`}
             >
-              {link.label}
+              {linkLabels[link.id] ? linkLabels[link.id][lang] : link.label}
             </button>
           ))}
+          <button
+            onClick={() => go('contact')}
+            className="mt-2 text-center py-2.5 rounded-lg text-sm font-medium bg-[#3D1420] text-white"
+          >
+            {isAr ? 'تواصل معي' : "Let's Connect"}
+          </button>
         </div>
       </div>
     </header>

@@ -7,9 +7,11 @@ import { Education } from '@/components/Education';
 import { Experience } from '@/components/Experience';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { LanguageProvider } from './context/LanguageContext';
 
 function App() {
   return (
+    <LanguageProvider>
     <div className="min-h-screen bg-ink-50 text-ink-800 overflow-x-hidden">
       <Navbar />
       <main>
@@ -23,6 +25,7 @@ function App() {
       </main>
       <Footer />
     </div>
+    </LanguageProvider>
   );
 }
 

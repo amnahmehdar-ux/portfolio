@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useReveal } from '@/hooks/useReveal';
+import { useLanguage } from '../context/LanguageContext';
 
 type SectionProps = {
   id: string;
@@ -33,15 +34,21 @@ export function SectionHeading({
   description,
   align = 'left',
 }: SectionHeadingProps) {
-  const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
+  const { isAr } = useLanguage();
+  const alignment = align === 'center' ? 'text-center mx-auto' : 'text-start';
+
   return (
     <div className={`max-w-2xl ${alignment} ${align === 'center' ? 'mx-auto' : ''}`}>
       {eyebrow && (
-        <span className="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-accent-600 mb-3">
+        <span className="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-[#C59B27] mb-3">
           {eyebrow}
         </span>
       )}
-      <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 tracking-tight">
+      <h2
+        className={`font-display text-3xl sm:text-4xl font-bold text-ink-900 ${
+          isAr ? 'leading-snug tracking-normal' : 'tracking-tight'
+        }`}
+      >
         {title}
       </h2>
       {description && (

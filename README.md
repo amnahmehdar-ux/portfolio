@@ -29,8 +29,8 @@ All personal details live in **`src/data/profile.ts`**:
 ```ts
 export const profile = {
   name: 'Amnah O. Almohdar',
-  linkedin: 'LINKEDIN_URL',   // ← replace with your real link
-  github: 'GITHUB_URL',       // ← replace with your real link
+  linkedin: 'https://www.linkedin.com/in/amnahalmohdar',   // ← replace with your real link
+  github: 'https://github.com/amnahmehdar-ux',       // ← replace with your real link
   email: 'Amnahmehdar@gmail.com',     // ← replace with your real email
   // ...
 };

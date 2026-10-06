@@ -60,3 +60,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #9aa6b5;
 }
+/* تطبيق الخط عند التحويل للعربية */
+html[lang="ar"],
+html[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+}
+
+/* تعديل عناوين العرض الخاصة في العربية */
+html[dir="rtl"] .font-display {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
